@@ -1,6 +1,6 @@
 import json
 from fastapi import HTTPException
-from httpx import AsyncClient
+from httpx import AsyncClient, Timeout
 import os
 from .topics_loader import topics
 
@@ -14,7 +14,8 @@ STRING_TOPIC_LIST = ', '.join(topics.keys())
 
 
 async def get_search_results(url):
-    async with AsyncClient() as ac:
+    timeout = Timeout(20.0, connect=20.0)
+    async with AsyncClient(timeout=timeout) as ac:
         response = await ac.get(URL_TO_SEARCH_API.format(CUSTOM_SEARCH_API_KEY, CUSTOM_ENGINE_ID, url))
     return response.json() if response.status_code == 200 else {}
 
@@ -23,8 +24,8 @@ def compile_chatgpt_query(url, json_response):
     gpt_query_text = "\"" + url + ". "
     if items:=json_response.get('items'):
         item = items[0]
-        gpt_query_text += item['title'] + ". "
-        gpt_query_text += item['snippet']
+        gpt_query_text += item['title'] if 'title' in item else '' + ". "
+        gpt_query_text += item['snippet']  if 'snippet' in item else ''
     gpt_query_text += "\""
 
     return gpt_query_text
@@ -46,7 +47,9 @@ async def get_chatgpt_answer(gpt_query_text :  str):
         "history" : [history_context]
     }
 
-    async with AsyncClient() as ac:
+    timeout = Timeout(20.0, connect=20.0)
+
+    async with AsyncClient(timeout=timeout) as ac:
         response = await ac.post(
             url='https://ask.chadgpt.ru/api/public/gpt-3.5',
             json=request_json
