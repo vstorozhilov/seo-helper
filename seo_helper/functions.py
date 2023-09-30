@@ -57,8 +57,7 @@ async def get_chatgpt_answer(gpt_query_text :  str):
     async with AsyncClient() as ac:
         response = await ac.post(
             url='https://ask.chadgpt.ru/api/public/gpt-3.5',
-            json=request_json,
-            timeout=
+            json=request_json
         )
 
     # Проверяем, отправился ли запрос
