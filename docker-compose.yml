@@ -6,7 +6,7 @@ services:
     ports:
       - 5000:5000
     volumes:
-      - ./tematics.json:/app/tematics.json
+      - ./topics.csv:/app/topics.csv
     environment:
       - CUSTOM_SEARCH_API_KEY=$CUSTOM_SEARCH_API_KEY
       - CUSTOM_ENGINE_ID=$CUSTOM_ENGINE_ID
