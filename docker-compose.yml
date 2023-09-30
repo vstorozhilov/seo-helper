@@ -1,0 +1,16 @@
+
+services:
+  seo_helper:
+    build:
+      context: .
+    ports:
+      - 5000:5000
+    volumes:
+      - ./tematics.json:/app/tematics.json
+    environment:
+      - CUSTOM_SEARCH_API_KEY=$CUSTOM_SEARCH_API_KEY
+      - CUSTOM_ENGINE_ID=$CUSTOM_ENGINE_ID
+      - URL_TO_SEARCH_API=$URL_TO_SEARCH_API
+      - CHAD_API_KEY=$CHAD_API_KEY
+      - TOPICS_FILE_PATH=$TOPICS_FILE_PATH
+      - MESSAGE_TO_GPT_PATTERN=$MESSAGE_TO_GPT_PATTERN
