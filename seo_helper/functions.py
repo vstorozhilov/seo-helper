@@ -1,10 +1,8 @@
 import json
 from fastapi import HTTPException
-from httpx import AsyncClient, HTTPTransport
+from httpx import AsyncClient
 import os
 from .topics_loader import topics
-
-transport = HTTPTransport(retries=1)
 
 CUSTOM_SEARCH_API_KEY = os.getenv('CUSTOM_SEARCH_API_KEY')
 CUSTOM_ENGINE_ID = os.getenv('CUSTOM_ENGINE_ID')
