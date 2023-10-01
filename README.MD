@@ -55,6 +55,6 @@ POST:
 - https://developers.google.com/custom-search
 - https://chadgpt.ru/api-docs
 
-**Презентацию можно посмотреть тут:** https://drive.google.com/file/d/10D-_hJByoxPYEUQTFPwXmRfv0PtjZ7rn/view
-**Или в файлике Presentation.pdf**
+**Презентацию можно посмотреть тут:** https://drive.google.com/file/d/1sSFPAKZXc0pxO8rakAboezSBYdkajx9U/view?usp=sharing <br>
+**Или в файлике ITPY.pdf**
 
